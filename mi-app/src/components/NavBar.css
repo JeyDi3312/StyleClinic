@@ -1,0 +1,29 @@
+.custom-navbar {
+  background-color: #000 !important;
+  padding: 1rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  border-bottom: 1px solid white;
+}
+
+.custom-navbar .navbar-brand {
+  margin-left: 510px;
+  margin-bottom: -10px;
+  margin-top: -15px;
+}
+
+.custom-navbar .nav-link {
+  color: #fff !important;
+  font-weight: 500;
+  margin-left: 1rem;
+  transition: color 0.3s ease;
+}
+
+.custom-navbar .nav-link:hover {
+  color: #ccc !important;
+  text-decoration: none;
+}
+
+.custom-navbar .custom-dropdown-nav{
+  margin-left: -100px;
+
+}
