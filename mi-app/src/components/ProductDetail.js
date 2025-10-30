@@ -8,24 +8,13 @@ import './ProductDetail.css';
 function ProductDetail() {
   const { id } = useParams();
   const [producto, setProducto] = useState(null);
-  const [productToAdd, setProductToAdd] = useState(null);
   const [loading, setLoading] = useState(true);
   const { addToCart } = useCart();
 
   useEffect(() => {
     axios.get(`http://localhost:8080/api/productos/${id}`)
       .then(res => {
-        const p = res.data;
-        setProducto(p);
-
-    
-        setProductToAdd({
-          id: p.idproducto,
-          title: p.nombreproducto,
-          price: parseFloat(p.priceproducto),
-          image: p.imageproducto,
-        });
-
+        setProducto(res.data);
         setLoading(false);
       })
       .catch(err => {
@@ -35,10 +24,17 @@ function ProductDetail() {
   }, [id]);
 
   const handleAddToCart = () => {
-    if (!productToAdd) {
-      console.warn("productToAdd no está listo aún");
+    if (!producto) {
+      console.warn("producto no está listo aún");
       return;
     }
+
+    const productToAdd = {
+        idproducto: producto.idproducto,
+        nombreproducto: producto.nombreproducto,
+        priceproducto: producto.priceproducto,
+        imageproducto: producto.imageproducto,
+    };
 
     console.log("Agregando al carrito:", productToAdd);
     addToCart(productToAdd);
