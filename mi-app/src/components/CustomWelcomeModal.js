@@ -7,7 +7,7 @@ const CustomWelcomeModal = ({ onContinue }) => {
       <div className="welcome-modal-content">
         <h2 className="welcome-modal-title">¡Bienvenido a la customización!</h2>
         <p className="welcome-modal-text">
-          Aquí podrás dar rienda suelta a tu creatividad. Elige el color de tu camiseta y luego personaliza la parte delantera y trasera con nuestros diseños exclusivos. ¡Vamos a crear algo único!
+          Aquí podrás soltar tu creatividad. Elige el color de tu camiseta y luego personaliza la parte delantera y trasera con nuestros diseños exclusivos. ¡Vamos a crear algo único!
         </p>
         <button className="welcome-modal-button" onClick={onContinue}>
           Continuar

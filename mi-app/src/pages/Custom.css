@@ -1,4 +1,4 @@
-/* General Layout */
+
 .customizer-container {
   padding: 150px 20px 40px 20px;
   display: flex;
@@ -32,10 +32,10 @@
   width: 100%;
 }
 
-/* Preview Area - Made Larger */
+
 .preview-area {
   display: flex;
-  gap: 30px; /* Increased gap */
+  gap: 30px; 
   flex-grow: 1;
   position: sticky;
   top: 150px;
@@ -46,15 +46,15 @@
 }
 
 .tshirt-preview-title {
-  font-size: 1.5em; /* Larger title */
+  font-size: 1.5em; 
   font-weight: bold;
-  margin-bottom: 15px; /* More space */
+  margin-bottom: 15px;
   color: #444;
 }
 
 .tshirt-display-panel {
-  width: 350px; /* Larger panel */
-  height: 350px; /* Larger panel */
+  width: 350px; 
+  height: 350px; 
   border: 1px solid #eee;
   border-radius: 8px;
   display: flex;
@@ -73,9 +73,9 @@
   object-fit: contain;
 }
 
-/* Options & Selections Area */
+
 .options-area {
-  width: 400px; /* Wider to accommodate scrollbar nicely */
+  width: 400px; 
 }
 
 .selection-step, .design-selection-group, .size-selection-group {
@@ -89,18 +89,18 @@
   color: #333;
 }
 
-/* Horizontal Scroll for Designs */
+
 .design-options-grid {
-  display: flex; /* Changed from grid to flex */
-  flex-wrap: nowrap; /* Ensures all items are in a single line */
-  overflow-x: auto; /* Enables horizontal scrolling */
+  display: flex; 
+  flex-wrap: nowrap; 
+  overflow-x: auto; 
   gap: 15px;
-  padding-bottom: 15px; /* Provides space for the scrollbar */
-  scrollbar-width: thin; /* For Firefox */
-  scrollbar-color: #ccc #f1f1f1; /* For Firefox */
+  padding-bottom: 15px; 
+  scrollbar-width: thin; 
+  scrollbar-color: #ccc #f1f1f1; 
 }
 
-/* Custom Webkit Scrollbar */
+
 .design-options-grid::-webkit-scrollbar {
   height: 8px;
 }
@@ -117,7 +117,7 @@
 }
 
 .design-choice-box {
-  flex: 0 0 100px; /* Defines a fixed size for each item */
+  flex: 0 0 100px; 
   width: 100px;
   height: 100px;
   cursor: pointer;
@@ -147,7 +147,7 @@
   object-fit: contain;
 }
 
-/* --- Unchanged styles from here --- */
+
 
 .color-selector {
   display: flex;

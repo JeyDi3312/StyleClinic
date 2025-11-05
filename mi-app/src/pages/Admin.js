@@ -62,7 +62,7 @@ function Admin() {
 
   const handleFetchProduct = async () => {
     setError('');
-    setProduct({ nombreproducto: '' }); // Reset product state
+    setProduct({ nombreproducto: '' }); 
     try {
       const response = await axios.get(`http://localhost:8080/api/productos/${productId}`);
       setProduct(response.data);
@@ -122,9 +122,9 @@ function Admin() {
     <Container className="mt-5 pt-5">
       <div className="p-5 mb-4 bg-light rounded-3">
         <Container fluid className="py-5">
-          <h1 className="display-5 fw-bold">¡Bienvenido, {user?.email}!</h1>
+          <h1 className="display-5 fw-bold">Panel de administrador</h1>
           <p className="col-md-8 fs-4">
-            Este es tu panel de administrador. Desde aquí puedes gestionar los productos, ver pedidos y administrar otros aspectos de la tienda.
+            Este es el panel de administrador. Desde aquí puedes gestionar los productos, ver pedidos y administrar otros aspectos de la tienda.
           </p>
         </Container>
       </div>
@@ -152,7 +152,7 @@ function Admin() {
         </Card.Body>
       </Card>
 
-      {/* Add Product Modal */}
+      
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Agregar Nuevo Producto</Modal.Title>
@@ -187,7 +187,6 @@ function Admin() {
         </Modal.Body>
       </Modal>
 
-      {/* Edit Product Modal */}
       <Modal show={showEditModal} onHide={handleEditModalClose}>
         <Modal.Header closeButton>
           <Modal.Title>Editar Producto</Modal.Title>
@@ -234,7 +233,6 @@ function Admin() {
         </Modal.Body>
       </Modal>
 
-      {/* Delete Product Modal */}
       <Modal show={showDeleteModal} onHide={handleDeleteModalClose}>
         <Modal.Header closeButton>
           <Modal.Title>Eliminar Producto</Modal.Title>

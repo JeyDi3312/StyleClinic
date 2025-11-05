@@ -11,13 +11,12 @@
     z-index: 1050;
 }
 
-/* The new, simple modal style */
 .modal-content-simple {
     background-color: #fff;
     padding: 30px;
     border-radius: 8px;
     width: 90%;
-    max-width: 350px; /* Smaller, more focused */
+    max-width: 350px; 
     box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     position: relative;
     text-align: center;
@@ -44,12 +43,12 @@
     color: #000;
 }
 
-/* Centered size selector */
+
 .size-selector {
     display: flex;
     gap: 10px;
     flex-wrap: wrap;
-    justify-content: center; /* Center the sizes */
+    justify-content: center; 
     margin-bottom: 20px;
 }
 

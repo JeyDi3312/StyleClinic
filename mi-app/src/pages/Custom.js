@@ -1,16 +1,19 @@
 import React, { useState } from 'react';
+import { useCart } from '../context/CartContext'; 
 import './Custom.css';
 import CustomWelcomeModal from '../components/CustomWelcomeModal';
 
 const Custom = () => {
-  // State management
+  const { addToCart } = useCart(); 
+
+  
   const [showWelcomeModal, setShowWelcomeModal] = useState(true);
-  const [selectedColor, setSelectedColor] = useState(null); // 'negro' or 'blanco'
+  const [selectedColor, setSelectedColor] = useState(null);
   const [frontDesign, setFrontDesign] = useState(null);
   const [backDesign, setBackDesign] = useState(null);
   const [size, setSize] = useState('M');
 
-  // Design sets
+ 
   const designs = {
     negro: {
       front: ['DiseñoA1', 'DiseñoA2', 'DiseñoA3', 'DiseñoA4', 'DiseñoA5'],
@@ -24,12 +27,11 @@ const Custom = () => {
 
   const sizes = ['S', 'M', 'L', 'XL'];
 
-  // Handlers
+  
   const handleContinue = () => setShowWelcomeModal(false);
 
   const handleColorSelect = (color) => {
     setSelectedColor(color);
-    // Set default designs when color is selected
     setFrontDesign(designs[color].front[0]);
     setBackDesign(designs[color].back[0]);
   };
@@ -49,15 +51,24 @@ const Custom = () => {
       alert('Por favor, completa tu diseño antes de añadirlo al carrito.');
       return;
     }
-    console.log('Producto añadido al carrito:');
-    console.log('Color:', selectedColor);
-    console.log('Diseño Delantero:', frontDesign);
-    console.log('Diseño Trasero:', backDesign);
-    console.log('Talla:', size);
-    // Here you would typically call a function from a CartContext, for example
+
+    const customProduct = {
+      id: `custom-${Date.now()}`,
+      nombreproducto: 'Prenda Customizada',
+      priceproducto: 200.000, 
+      imageproducto: `/img/${frontDesign}.png`, 
+      isCustom: true,
+      color: selectedColor,
+      diseñoFrontal: frontDesign,
+      diseñoTrasero: backDesign,
+      talla: size,
+      quantity: 1,
+    };
+
+    addToCart(customProduct);
+    alert('¡Tu prenda personalizada ha sido añadida al carrito!');
   };
 
-  // Determine which designs to show
   const availableDesigns = selectedColor ? designs[selectedColor] : { front: [], back: [] };
 
   return (
@@ -72,7 +83,6 @@ const Custom = () => {
 
         {!showWelcomeModal && (
           <main className="customizer-main-content">
-            {/* --- PREVIEW AREA --- */}
             <section className="preview-area">
               <div className="tshirt-preview-wrapper">
                 <h3 className="tshirt-preview-title">Vista Delantera</h3>
@@ -88,9 +98,7 @@ const Custom = () => {
               </div>
             </section>
 
-            {/* --- OPTIONS AREA --- */}
             <section className="options-area">
-              {/* Step 1: Color Selection */}
               {!selectedColor && (
                 <div className="selection-step">
                   <h3 className="selection-title">Paso 1: Elige un color</h3>
@@ -107,7 +115,6 @@ const Custom = () => {
                 </div>
               )}
 
-              {/* Step 2 & 3: Design and Size Selection */}
               {selectedColor && (
                 <>
                   <div className="design-selection-group">

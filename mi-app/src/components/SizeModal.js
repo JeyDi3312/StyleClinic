@@ -27,7 +27,7 @@ function SizeModal({ product, onClose }) {
     onClose();
   };
 
-  // A simpler, more direct modal design
+
   return (
     <div className="modal-backdrop" onClick={onClose}> 
       <div className="modal-content-simple" onClick={e => e.stopPropagation()}> 

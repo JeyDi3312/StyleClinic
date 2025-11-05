@@ -2,23 +2,22 @@ import React, { useState } from 'react';
 import { Card, Button } from 'react-bootstrap';
 import './ProductCard.css';
 import { useNavigate } from 'react-router-dom';
-import SizeModal from './SizeModal'; // Import the modal
+import SizeModal from './SizeModal'; 
 
 function ProductCard({ idproducto, nombreproducto, priceproducto, imageproducto, tallaproducto }) {
   const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
 
-  // This function will be called when the user clicks the main add to cart button
   const handleOpenModal = (e) => {
-    e.stopPropagation(); // Prevent the card's own click event
-    setShowModal(true);   // Show the modal
+    e.stopPropagation(); 
+    setShowModal(true);   
   };
 
   const handleCloseModal = () => {
-    setShowModal(false); // Hide the modal
+    setShowModal(false); 
   };
 
-  // This will navigate to the product detail page
+ 
   const handleClick = () => {
     navigate(`/producto/${idproducto}`);
   };
@@ -38,7 +37,7 @@ function ProductCard({ idproducto, nombreproducto, priceproducto, imageproducto,
         </Card.Body>
       </Card>
 
-      {/* Render the modal conditionally */}
+      
       {showModal && <SizeModal product={product} onClose={handleCloseModal} />}
     </>
   );
