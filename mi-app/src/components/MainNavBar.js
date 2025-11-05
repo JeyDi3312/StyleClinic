@@ -31,9 +31,10 @@ function MainNavBar() {
         <Navbar.Brand href="/"><img src="./img/StyleClinicWhite.png" width={"170px"} alt="Logo" /></Navbar.Brand>
         <Navbar.Toggle aria-controls="main-navbar-nav" />
         <Navbar.Collapse id="main-navbar-nav">
-          <Nav className='ms-auto'>
+          <Nav className='ms-auto d-flex align-items-center'>
             <Nav.Link href="/Catalogo">Catálogo</Nav.Link>
             <Nav.Link href="/custom">Custom</Nav.Link>
+            
             <Link to="/cart" className="nav-link position-relative">
               <img src="./img/carrito.png" width="30px" alt="Carrito" />
               {cartCount > 0 && (
@@ -48,8 +49,18 @@ function MainNavBar() {
 
             {user ? (
               <>
-                <Nav.Link disabled>Hola, {user.nombre || user.email}</Nav.Link>
-                <Nav.Link onClick={handleLogout}>Cerrar sesión</Nav.Link>
+                {user.email === 'admin@gmail.com' ? (
+                  <Nav.Link href="/admin" className="d-flex align-items-center user-nav-item">
+                    <img src="/img/user.png" width="65px" alt="Usuario" className="me-1" />
+                    <span style={{ fontSize: '0.9rem' }}>{user.nombre}</span>
+                  </Nav.Link>
+                ) : (
+                  <div className="nav-link d-flex align-items-center user-nav-item">
+                    <img src="/img/user.png" width="65px" alt="Usuario" className="me-1" />
+                    <span style={{ fontSize: '0.9rem' }}>{user.nombre || user.email.split('@')[0]}</span>
+                  </div>
+                )}
+                <Nav.Link onClick={handleLogout} className="ms-2">Cerrar sesión</Nav.Link>
               </>
             ) : (
               <Nav.Link href='/Login'>Login</Nav.Link>

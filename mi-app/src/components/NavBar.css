@@ -16,6 +16,8 @@
   font-weight: 500;
   margin-left: 1rem;
   transition: color 0.3s ease;
+  display: flex;
+  align-items: center;
 }
 
 .custom-navbar .nav-link:hover {
@@ -26,4 +28,8 @@
 .custom-navbar .custom-dropdown-nav{
   margin-left: -100px;
 
+}
+
+.user-nav-item {
+    margin-left: 0.25rem !important;
 }

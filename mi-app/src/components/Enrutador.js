@@ -10,6 +10,7 @@ import { CartProvider } from '../context/CartContext';
 import Cart from '../pages/Cart';
 import ProductDetail from './ProductDetail';
 import Custom from '../pages/Custom';
+import Admin from '../pages/Admin';
 
 function Enrutador() {
     return (
@@ -25,6 +26,7 @@ function Enrutador() {
           <Route path="/Cart" element={<Cart />} />
           <Route path="/producto/:id" element={<ProductDetail />} />
           <Route path="/custom" element={<Custom />} />
+          <Route path="/admin" element={<Admin />} />
 
         </Routes>
                <Footer />
