@@ -14,6 +14,7 @@ public class Producto {
     private String priceproducto;
     private String descriptionproducto;
     private String cantidadproducto;
+    private String tallaproducto;
 
     public String getCantidadproducto() {
         return cantidadproducto;
@@ -51,6 +52,10 @@ public class Producto {
     public void setDescriptionproducto(String descriptionproducto) {
         this.descriptionproducto = descriptionproducto;
     }
-
-
+    public String getTallaproducto() {
+        return tallaproducto;
+    }
+    public void setTallaproducto(String tallaproducto) {
+        this.tallaproducto = tallaproducto;
+    }
 }

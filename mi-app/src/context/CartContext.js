@@ -17,16 +17,20 @@ export const CartProvider = ({ children }) => {
 
   const addToCart = (product) => {
     setCart(prev => {
-      const existing = prev.find(p => p.idproducto === product.idproducto);
+      const existing = prev.find(p => p.idproducto === product.idproducto && p.talla === product.talla);
       if (existing) {
-        return prev.map(p => p.idproducto === product.idproducto ? { ...p, quantity: p.quantity + 1 } : p);
+        return prev.map(p => 
+          p.idproducto === product.idproducto && p.talla === product.talla 
+            ? { ...p, quantity: p.quantity + 1 } 
+            : p
+        );
       }
       return [...prev, { ...product, quantity: 1 }];
     });
   };
 
-  const removeFromCart = (productId) => {
-    setCart(prev => prev.filter(p => p.idproducto !== productId));
+  const removeFromCart = (productId, talla) => {
+    setCart(prev => prev.filter(p => !(p.idproducto === productId && p.talla === talla)));
   };
 
   const clearCart = () => setCart([]);

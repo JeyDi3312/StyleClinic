@@ -1,5 +1,6 @@
+/* General Layout */
 .customizer-container {
-  padding: 150px 20px 20px 20px;
+  padding: 150px 20px 40px 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -31,10 +32,13 @@
   width: 100%;
 }
 
+/* Preview Area - Made Larger */
 .preview-area {
   display: flex;
-  gap: 20px;
+  gap: 30px; /* Increased gap */
   flex-grow: 1;
+  position: sticky;
+  top: 150px;
 }
 
 .tshirt-preview-wrapper {
@@ -42,68 +46,99 @@
 }
 
 .tshirt-preview-title {
-  font-size: 1.2em;
+  font-size: 1.5em; /* Larger title */
   font-weight: bold;
-  margin-bottom: 10px;
+  margin-bottom: 15px; /* More space */
   color: #444;
 }
 
 .tshirt-display-panel {
-  width: 300px;
-  height: 300px;
+  width: 350px; /* Larger panel */
+  height: 350px; /* Larger panel */
   border: 1px solid #eee;
   border-radius: 8px;
-  background-color: #f9f9f9;
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: background-color 0.3s ease;
 }
 
+.tshirt-display-panel.default-bg { background-color: #f9f9f9; }
+.tshirt-display-panel.negro { background-color: #1a1a1a; }
+.tshirt-display-panel.blanco { background-color: #ffffff; border: 1px solid #ddd; }
+
 .preview-image {
-  width: 100%;
-  height: 100%;
+  width: 90%;
+  height: 90%;
   object-fit: contain;
 }
 
 /* Options & Selections Area */
 .options-area {
-  width: 300px;
+  width: 400px; /* Wider to accommodate scrollbar nicely */
 }
 
-.design-selection-group, .size-selection-group {
+.selection-step, .design-selection-group, .size-selection-group {
   margin-bottom: 30px;
 }
 
-.design-selection-title, .size-selection-title {
+.selection-title, .design-selection-title, .size-selection-title {
   font-size: 1.5em;
   font-weight: bold;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
   color: #333;
 }
 
+/* Horizontal Scroll for Designs */
 .design-options-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex; /* Changed from grid to flex */
+  flex-wrap: nowrap; /* Ensures all items are in a single line */
+  overflow-x: auto; /* Enables horizontal scrolling */
   gap: 15px;
+  padding-bottom: 15px; /* Provides space for the scrollbar */
+  scrollbar-width: thin; /* For Firefox */
+  scrollbar-color: #ccc #f1f1f1; /* For Firefox */
+}
+
+/* Custom Webkit Scrollbar */
+.design-options-grid::-webkit-scrollbar {
+  height: 8px;
+}
+.design-options-grid::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+.design-options-grid::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+.design-options-grid::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
 
 .design-choice-box {
+  flex: 0 0 100px; /* Defines a fixed size for each item */
+  width: 100px;
+  height: 100px;
   cursor: pointer;
   border: 2px solid #ddd;
-  padding: 10px;
+  padding: 8px;
   border-radius: 8px;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
   background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .design-choice-box:hover {
-  border-color: #333;
+  border-color: #555;
   transform: scale(1.05);
 }
 
 .design-choice-box.selected {
-  border-color: #007bff;
-  box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+  border-color: #000;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
 }
 
 .design-choice-box img {
@@ -112,9 +147,41 @@
   object-fit: contain;
 }
 
+/* --- Unchanged styles from here --- */
+
+.color-selector {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
+.color-option-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  font-weight: bold;
+  color: #555;
+}
+.color-option {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 3px solid #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.color-option:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+.color-option.negro { background-color: #1a1a1a; }
+.color-option.blanco { background-color: #f5f5f5; }
+
+
 .size-options-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
   gap: 10px;
 }
 
@@ -127,7 +194,7 @@
   font-size: 1em;
   font-weight: bold;
   text-align: center;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
 }
 
 .size-choice-btn:hover {
@@ -135,25 +202,43 @@
 }
 
 .size-choice-btn.selected {
-  background-color: #007bff;
+  background-color: #000;
   color: white;
-  border-color: #007bff;
+  border-color: #000;
 }
 
-.add-to-cart-btn {
-  background-color: #007bff;
-  color: white;
+.add-to-cart-btn, .change-color-btn {
   border: none;
-  padding: 15px 30px;
-  font-size: 1.2em;
+  padding: 15px;
+  font-size: 1.1em;
   font-weight: bold;
   border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.3s ease;
   width: 100%;
-  margin-top: 20px;
+  margin-top: 10px;
+}
+
+.add-to-cart-btn {
+  background-color: #000;
+  color: white;
 }
 
 .add-to-cart-btn:hover {
-  background-color: #0056b3;
+  background-color: #333;
+}
+
+.add-to-cart-btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.change-color-btn {
+  background-color: #f0f0f0;
+  color: #333;
+  border: 1px solid #ddd;
+}
+
+.change-color-btn:hover {
+  background-color: #e0e0e0;
 }

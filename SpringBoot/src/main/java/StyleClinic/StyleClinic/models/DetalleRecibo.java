@@ -21,8 +21,17 @@ public class DetalleRecibo {
     private Integer cantidad;
     private Double precioUnitario;
     private Double subtotal;
+    private String talla;
 
-    // Getters y setters
+
+
+    public String getTalla() {
+        return talla;
+    }
+
+    public void setTalla(String talla) {
+        this.talla = talla;
+    }
 
     public Long getId() {
         return id;

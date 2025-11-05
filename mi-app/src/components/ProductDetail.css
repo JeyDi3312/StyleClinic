@@ -1,3 +1,48 @@
 .Productdetail-custom{
-  margin-top: 200px;
+    margin-top: 150px;
+}
+
+.Productdetail-custom h2 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.Productdetail-custom p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #6c757d;
+}
+
+.Productdetail-custom h4 {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #343a40;
+    margin-top: 20px;
+}
+
+.size-selector {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.size-box {
+    border: 1px solid #ccc;
+    padding: 8px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: all 0.2s ease-in-out;
+}
+
+.size-box.selected {
+    background-color: #000;
+    color: #fff;
+    border-color: #000;
+}
+
+.size-box:not(.selected):hover {
+    background-color: #f0f0f0;
+    border-color: #888;
 }

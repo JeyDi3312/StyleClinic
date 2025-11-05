@@ -25,13 +25,14 @@ function Cart() {
   return (
     <Container className="Carrito-custom pt-5">
       <h3>Tu Carrito</h3>
-      {cart.map((item) => (
-        <Row key={item.idproducto} className="align-items-center my-3 border-bottom pb-2">
+      {cart.map((item, index) => (
+        <Row key={`${item.idproducto}-${item.talla}-${index}`} className="align-items-center my-3 border-bottom pb-2">
           <Col xs={3}>
             <Image src={item.imageproducto} fluid rounded />
           </Col>
           <Col xs={3}>
             <h5>{item.nombreproducto}</h5>
+            {item.talla && <p>Talla: {item.talla}</p>}
           </Col>
           <Col xs={2}>
             <p>Cantidad: {item.quantity}</p>
@@ -40,7 +41,7 @@ function Cart() {
             <p>${(parseFloat(item.priceproducto) * item.quantity).toFixed(2)}</p>
           </Col>
           <Col xs={2}>
-            <Button variant="danger" size="sm" onClick={() => removeFromCart(item.idproducto)}>Eliminar</Button>
+            <Button variant="danger" size="sm" onClick={() => removeFromCart(item.idproducto, item.talla)}>Eliminar</Button>
           </Col>
         </Row>
       ))}

@@ -30,6 +30,7 @@ const [productos, setProductos] = useState([]);
         nombreproducto={producto.nombreproducto}
         priceproducto={producto.priceproducto}
         imageproducto={producto.imageproducto}
+        tallaproducto={producto.tallaproducto} // <-- This line is now added
       />
     </Col>
   ))}
