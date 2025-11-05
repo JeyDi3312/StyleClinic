@@ -102,7 +102,7 @@ function Home() {
             marginBottom: "40px",
           }}
         >
-          Nuestras Cedes
+          Nuestras Sedes
         </h2>
 
         <Row className="justify-content-center">
