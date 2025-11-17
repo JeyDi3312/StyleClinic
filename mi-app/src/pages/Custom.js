@@ -6,14 +6,12 @@ import CustomWelcomeModal from '../components/CustomWelcomeModal';
 const Custom = () => {
   const { addToCart } = useCart(); 
 
-  
   const [showWelcomeModal, setShowWelcomeModal] = useState(true);
   const [selectedColor, setSelectedColor] = useState(null);
   const [frontDesign, setFrontDesign] = useState(null);
   const [backDesign, setBackDesign] = useState(null);
   const [size, setSize] = useState('M');
 
- 
   const designs = {
     negro: {
       front: ['DiseñoA1', 'DiseñoA2', 'DiseñoA3', 'DiseñoA4', 'DiseñoA5'],
@@ -27,7 +25,6 @@ const Custom = () => {
 
   const sizes = ['S', 'M', 'L', 'XL'];
 
-  
   const handleContinue = () => setShowWelcomeModal(false);
 
   const handleColorSelect = (color) => {
@@ -52,17 +49,19 @@ const Custom = () => {
       return;
     }
 
+    // 1. Usar los nuevos nombres de campo: name, price, image, size
     const customProduct = {
-      id: `custom-${Date.now()}`,
-      nombreproducto: 'Prenda Customizada',
-      priceproducto: 200.000, 
-      imageproducto: `/img/${frontDesign}.png`, 
+      // No usamos _id porque este producto no existe en la BD
+      name: 'Prenda Customizada',
+      price: 200.00, // Asegurarse que sea un número
+      // 2. Usar la imagen del diseño frontal como imagen principal para el carrito
+      image: `/img/${frontDesign}.png`, 
       isCustom: true,
       color: selectedColor,
       diseñoFrontal: frontDesign,
       diseñoTrasero: backDesign,
-      talla: size,
-      quantity: 1,
+      size: size, // `size` en lugar de `talla`
+      quantity: 1, // La cantidad se gestiona en el contexto, pero la inicializamos aquí
     };
 
     addToCart(customProduct);

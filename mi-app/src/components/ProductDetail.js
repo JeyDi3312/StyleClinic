@@ -6,6 +6,7 @@ import { useCart } from '../context/CartContext';
 import './ProductDetail.css';
 
 function ProductDetail() {
+  // 1. Obtenemos el `id` del producto de la URL
   const { id } = useParams();
   const [producto, setProducto] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -13,7 +14,8 @@ function ProductDetail() {
   const { addToCart } = useCart();
 
   useEffect(() => {
-    axios.get(`http://localhost:8080/api/productos/${id}`)
+    // 2. Apuntamos al nuevo endpoint del backend de Node.js
+    axios.get(`http://localhost:5000/api/products/${id}`)
       .then(res => {
         setProducto(res.data);
         setLoading(false);
@@ -26,7 +28,7 @@ function ProductDetail() {
 
   const handleAddToCart = () => {
     if (!producto) {
-      console.warn("producto no está listo aún");
+      console.warn("El producto no está cargado todavía");
       return;
     }
 
@@ -35,16 +37,17 @@ function ProductDetail() {
       return;
     }
 
+    // 3. Creamos el objeto a añadir con los nombres de la nueva API
     const productToAdd = {
-        idproducto: producto.idproducto,
-        nombreproducto: producto.nombreproducto,
-        priceproducto: producto.priceproducto,
-        imageproducto: producto.imageproducto,
-        talla: selectedSize,
+        _id: producto._id,       // Usamos _id de MongoDB
+        name: producto.name,       // `name` en lugar de `nombreproducto`
+        price: producto.price,     // `price` en lugar de `priceproducto`
+        image: producto.image,     // `image` en lugar de `imageproducto`
+        size: selectedSize,     // La talla seleccionada
     };
 
-    console.log("Agregando al carrito:", productToAdd);
     addToCart(productToAdd);
+    alert("Producto añadido al carrito!"); // Feedback para el usuario
   };
 
   if (loading) {
@@ -63,21 +66,20 @@ function ProductDetail() {
     );
   }
 
-  const defaultTallas = ["S", "M", "L", "XL"];
-  const tallas = producto.tallaproducto && producto.tallaproducto.length > 0 
-    ? producto.tallaproducto.split(',').map(t => t.trim()) 
-    : defaultTallas;
+  // 4. Las tallas ahora vienen de un array `sizes`
+  const tallas = producto.sizes || ["S", "M", "L", "XL"];
 
   return (
     <Container className="Productdetail-custom py-5">
       <Row>
         <Col md={6}>
-          <Image src={producto.imageproducto} fluid />
+          {/* 5. Usamos los nuevos nombres de campo para mostrar la info */}
+          <Image src={producto.image} fluid />
         </Col>
         <Col md={6}>
-          <h2>{producto.nombreproducto}</h2>
-          <p>{producto.descriptionproducto}</p>
-          <h4>${producto.priceproducto}</h4>
+          <h2>{producto.name}</h2>
+          <p>{producto.description}</p>
+          <h4>${producto.price}</h4>
 
           <div className="my-3">
             <strong>Talla:</strong>
@@ -98,7 +100,7 @@ function ProductDetail() {
             variant="dark" 
             onClick={handleAddToCart} 
             className="mt-3"
-            disabled={!selectedSize}
+            disabled={!selectedSize} // El botón se activa solo si se elige una talla
           >
             Agregar al carrito
           </Button>

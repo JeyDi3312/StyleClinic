@@ -11,9 +11,11 @@ function Home() {
   const navigate = useNavigate();
 
   useEffect(() => {
+    // 1. Usar la nueva URL del backend de Node.js
     axios
-      .get("http://localhost:8080/api/productos")
+      .get("http://localhost:5000/api/products")
       .then((response) => {
+        // Tomamos los primeros 3 productos para la sección "Nuestra Colección"
         setProductos(response.data.slice(0, 3));
       })
       .catch((error) => {
@@ -196,13 +198,18 @@ function Home() {
       <Container className="mt-1 pt-3">
         <h2 className="text-center text-black mb-4">Nuestra Colección</h2>
         <Row>
+          {/* 2. Mapear los productos y pasar los props con los nuevos nombres */}
           {productos.map((producto) => (
-            <Col key={producto.idproducto} md={4} className="mb-4">
+            // 3. Usar el nuevo _id de MongoDB como key
+            <Col key={producto._id} md={4} className="mb-4">
               <ProductCard
-                idproducto={producto.idproducto}
-                nombreproducto={producto.nombreproducto}
-                priceproducto={producto.priceproducto}
-                imageproducto={producto.imageproducto}
+                // 4. Pasar las propiedades con los nombres correctos
+                id={producto._id}
+                name={producto.name}
+                price={producto.price}
+                image={producto.image}
+                // size no está en la lista inicial, pero lo añadimos por si acaso
+                size={producto.size}
               />
             </Col>
           ))}
