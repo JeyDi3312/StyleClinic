@@ -9,7 +9,8 @@ function Catalogo() {
 const [productos, setProductos] = useState([]);
 
  useEffect(() => {
-    axios.get('http://localhost:8080/api/productos')
+    // Apuntamos al nuevo backend de Node.js
+    axios.get('http://localhost:5000/api/products')
       .then(response => {
         setProductos(response.data);
       })
@@ -23,14 +24,15 @@ const [productos, setProductos] = useState([]);
     <Container className="mt-1 pt-3">
       <h2 className="text-center text-black mb-4">Nuestra Colección</h2>
       <Row>
+      {/* Usamos los nuevos nombres de la API: _id, name, price, image, size */}
       {productos.map((producto) => (
-       <Col key={producto.idproducto} md={4} className="mb-4">
+       <Col key={producto._id} md={4} className="mb-4">
       <ProductCard
-        idproducto={producto.idproducto}
-        nombreproducto={producto.nombreproducto}
-        priceproducto={producto.priceproducto}
-        imageproducto={producto.imageproducto}
-        tallaproducto={producto.tallaproducto} 
+        id={producto._id} // ID de MongoDB es _id
+        name={producto.name}
+        price={producto.price}
+        image={producto.image}
+        size={producto.size} 
       />
     </Col>
   ))}
