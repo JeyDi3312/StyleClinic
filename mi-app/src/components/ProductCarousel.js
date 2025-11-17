@@ -30,7 +30,7 @@ function ProductCarousel() {
   return (
     <div className="carousel-section">
       <Container>
-        <h2 className="text-center mb-5 text-white">New Collection</h2>
+        <h2 className="text-center mb-5 text-white">Nueva Colección</h2>
         <Carousel indicators={false} controls={true}>
           {productGroups.map((group, idx) => (
             <Carousel.Item key={idx}>

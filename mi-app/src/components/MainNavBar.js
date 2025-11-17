@@ -23,7 +23,7 @@ function MainNavBar() {
       <Container>
         <Nav className='custom-dropdown-nav'>
           <NavDropdown title={<img src="./img/Lineas.png" width={"25px"} alt="Menú" />} id="basic-nav-dropdown">
-            <NavDropdown.Item href="/">New Collection</NavDropdown.Item>
+            <NavDropdown.Item href="/">Nueva Colección</NavDropdown.Item>
             <NavDropdown.Item href="/Contact">Contáctanos</NavDropdown.Item>
           </NavDropdown>
         </Nav>
@@ -33,7 +33,7 @@ function MainNavBar() {
         <Navbar.Collapse id="main-navbar-nav">
           <Nav className='ms-auto d-flex align-items-center'>
             <Nav.Link href="/Catalogo">Catálogo</Nav.Link>
-            <Nav.Link href="/custom">Custom</Nav.Link>
+            <Nav.Link href="/custom">Customiza</Nav.Link>
             
             <Link to="/cart" className="nav-link position-relative">
               <img src="./img/carrito.png" width="30px" alt="Carrito" />
@@ -63,7 +63,7 @@ function MainNavBar() {
                 <Nav.Link onClick={handleLogout} className="ms-2">Cerrar sesión</Nav.Link>
               </>
             ) : (
-              <Nav.Link href='/Login'>Login</Nav.Link>
+              <Nav.Link href='/Login'>Iniciar sesión</Nav.Link>
             )}
           </Nav>
         </Navbar.Collapse>

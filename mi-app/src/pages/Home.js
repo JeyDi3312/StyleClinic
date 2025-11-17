@@ -89,7 +89,7 @@ function Home() {
                   fontWeight: "bold",
                 }}
               >
-                Custom
+                Customiza
               </Button>
             </div>
           </Col>
