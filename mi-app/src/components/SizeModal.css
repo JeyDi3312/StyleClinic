@@ -37,6 +37,12 @@
     font-size: 1.8rem;
     cursor: pointer;
     color: #aaa;
+     padding: 0;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .modal-close-button:hover {
