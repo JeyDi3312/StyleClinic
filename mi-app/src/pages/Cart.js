@@ -5,7 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import './Cart.css';
 
 function Cart() {
-  const { cart, removeFromCart, clearCart, total } = useCart(); // Corregido: total en lugar de getTotal
+  const { cart, removeFromCart, clearCart, total } = useCart(); 
   const navigate = useNavigate();
 
   const handleCheckout = () => {
@@ -65,7 +65,7 @@ function Cart() {
       ))}
 
       <div className="text-end mt-4">
-        <h4>Total: ${total.toFixed(2)}</h4> {/* Corregido: usar la variable total */}
+        <h4>Total: ${total.toFixed(2)}</h4> 
         <Button variant="secondary" className="me-2" onClick={clearCart}>Vaciar carrito</Button>
         <Button variant="success" onClick={handleCheckout}>Proceder al pago</Button>
       </div>

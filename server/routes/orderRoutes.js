@@ -4,7 +4,21 @@ const router = express.Router();
 // Cargar Modelos
 const Order = require('../models/orderModel');
 const CustomProduct = require('../models/customProductModel');
-const Product = require('../models/productModel'); // Importar el modelo Product
+const Product = require('../models/productModel');
+
+// @route   GET api/orders
+// @desc    Obtener todos los pedidos
+// @access  Public (Debería ser privado para administradores en el futuro)
+router.get('/', async (req, res) => {
+  try {
+    // Busca todos los pedidos y los ordena del más nuevo al más antiguo
+    const orders = await Order.find({}).sort({ createdAt: -1 });
+    res.json(orders);
+  } catch (error) {
+    console.error('Error al obtener los pedidos:', error);
+    res.status(500).json({ message: 'Error del servidor' });
+  }
+});
 
 // @route   POST api/orders
 // @desc    Crear un nuevo pedido
@@ -27,26 +41,23 @@ router.post('/', async (req, res) => {
             size: item.size,
             precioFinal: item.price,
           });
-
           const savedCustomProduct = await newCustomProduct.save();
-
           return {
             name: item.name,
             quantity: item.quantity,
             image: item.image,
             price: savedCustomProduct.precioFinal,
             product: savedCustomProduct._id,
-            onModel: 'CustomProduct', // Especifica el modelo para populate
+            onModel: 'CustomProduct',
           };
         } else {
-          // Para productos estándar, solo necesitamos el ID y el modelo
           return {
             name: item.name,
             quantity: item.quantity,
             image: item.image,
             price: item.price,
-            product: item._id, // El ID del producto del catálogo
-            onModel: 'Product', // ¡ESTA ES LA LÍNEA QUE FALTABA!
+            product: item._id,
+            onModel: 'Product',
           };
         }
       })
@@ -59,10 +70,9 @@ router.post('/', async (req, res) => {
     });
 
     const createdOrder = await newOrder.save();
-
     res.status(201).json(createdOrder);
   } catch (error) {
-    console.error('Error detallado al crear pedido:', error); // Añadido para mejor debugging
+    console.error('Error detallado al crear pedido:', error);
     res.status(400).json({ 
       message: 'Error al crear el pedido', 
       error: error.message 
