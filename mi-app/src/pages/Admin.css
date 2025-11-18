@@ -1,0 +1,80 @@
+/* === Tema Claro para Panel de Administrador === */
+
+.admin-container-light {
+  padding-top: 180px;
+  padding-bottom: 2rem;
+  background-color: #f8f9fa; /* Fondo gris claro */
+  min-height: 100vh;
+}
+
+.admin-header-light {
+  background-color: #ffffff;
+  padding: 2rem;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+  border: 1px solid #dee2e6;
+}
+
+.admin-header-light h1 {
+  font-weight: 700;
+  color: #343a40; /* Texto oscuro */
+}
+
+.admin-header-light p {
+  color: #6c757d; /* Texto gris */
+}
+
+.stat-card-light {
+  background-color: #ffffff;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.stat-card-light:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.stat-card-light .card-body {
+  display: flex;
+  align-items: center;
+}
+
+.stat-icon-light {
+  font-size: 2rem;
+  margin-right: 1.5rem;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: #e9ecef;
+  color: #343a40;
+}
+
+.stat-info-light .card-title {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #6c757d;
+  margin-bottom: 0.25rem;
+}
+
+.stat-info-light .card-text {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #212529;
+}
+
+.products-card-light {
+  background-color: #ffffff;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+}
+
+.products-card-light .card-header {
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #dee2e6;
+  color: #212529;
+}

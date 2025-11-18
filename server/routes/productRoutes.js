@@ -52,11 +52,14 @@ router.put('/:id', (req, res) => {
 // @desc    Eliminar un producto
 // @access  Public (se podría proteger en el futuro)
 router.delete('/:id', (req, res) => {
-  Product.findById(req.params.id)
+  Product.findByIdAndDelete(req.params.id)
     .then(product => {
-      product.remove().then(() => res.json({ success: true }));
+      if (!product) {
+        return res.status(404).json({ productnotfound: 'No se encontró el producto' });
+      }
+      res.json({ success: true, message: 'Producto eliminado correctamente' });
     })
-    .catch(err => res.status(404).json({ productnotfound: 'No se encontró el producto' }));
+    .catch(err => res.status(500).json({ error: 'Error del servidor al eliminar el producto' }));
 });
 
 module.exports = router;

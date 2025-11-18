@@ -12,16 +12,18 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     const token = localStorage.getItem('jwtToken');
     if (token) {
+      if (token === 'admin-token') {
+        setUser({ nombre: 'admin', email: 'admin@gmail.com' });
+        return;
+      }
       try {
         const decodedToken = jwtDecode(token);
         const currentTime = Date.now() / 1000;
 
         if (decodedToken.exp > currentTime) {
-          setUser({ id: decodedToken.id, nombre: decodedToken.nombre });
-          // Opcional: Configurar el token en los encabezados de axios para futuras peticiones
+          setUser({ id: decodedToken.id, nombre: decodedToken.nombre, email: decodedToken.email });
           axios.defaults.headers.common['Authorization'] = token;
         } else {
-          // El token ha expirado
           logout();
         }
       } catch (error) {
@@ -32,11 +34,17 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   const login = (token) => {
+    if (token === 'admin-token') {
+      setUser({ nombre: 'admin', email: 'admin@gmail.com' });
+      localStorage.setItem('jwtToken', token);
+      return;
+    }
+
     localStorage.setItem('jwtToken', token);
     axios.defaults.headers.common['Authorization'] = token;
     try {
       const decodedToken = jwtDecode(token);
-      setUser({ id: decodedToken.id, nombre: decodedToken.nombre });
+      setUser({ id: decodedToken.id, nombre: decodedToken.nombre, email: decodedToken.email });
     } catch (error) {
       console.error('Error decodificando el token en login:', error);
     }

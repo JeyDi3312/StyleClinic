@@ -50,7 +50,7 @@ function MainNavBar() {
             {user ? (
               <>
                 {user.email === 'admin@gmail.com' ? (
-                  <Nav.Link href="/admin" className="d-flex align-items-center user-nav-item">
+                  <Nav.Link as={Link} to="/admin" className="d-flex align-items-center user-nav-item">
                     <img src="/img/user.png" width="65px" alt="Usuario" className="me-1" />
                     <span style={{ fontSize: '0.9rem' }}>{user.nombre}</span>
                   </Nav.Link>
