@@ -4,7 +4,9 @@ const connectDB = require('./config/db');
 
 // Importar rutas
 const userRoutes = require('./routes/userRoutes');
-const productRoutes = require('./routes/productRoutes'); // Importar rutas de productos
+const productRoutes = require('./routes/productRoutes');
+const customProductRoutes = require('./routes/customProductRoutes');
+const orderRoutes = require('./routes/orderRoutes'); // Importar rutas de pedidos
 
 // Conectar a la base de datos
 connectDB();
@@ -23,7 +25,9 @@ app.get('/', (req, res) => {
 
 // Usar Rutas
 app.use('/api/users', userRoutes);
-app.use('/api/products', productRoutes); // Usar rutas de productos
+app.use('/api/products', productRoutes);
+app.use('/api/custom-products', customProductRoutes);
+app.use('/api/orders', orderRoutes); // Usar rutas de pedidos
 
 // Iniciar el servidor
 app.listen(port, () => {

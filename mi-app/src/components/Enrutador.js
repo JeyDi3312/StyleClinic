@@ -11,6 +11,7 @@ import Cart from '../pages/Cart';
 import ProductDetail from './ProductDetail';
 import Custom from '../pages/Custom';
 import Admin from '../pages/Admin';
+import PlaceOrder from '../pages/PlaceOrder'; // Importar PlaceOrder
 
 function Enrutador() {
     return (
@@ -27,6 +28,7 @@ function Enrutador() {
           <Route path="/producto/:id" element={<ProductDetail />} />
           <Route path="/custom" element={<Custom />} />
           <Route path="/admin" element={<Admin />} />
+          <Route path="/placeorder" element={<PlaceOrder />} /> {/* Añadir nueva ruta */}
 
         </Routes>
                <Footer />

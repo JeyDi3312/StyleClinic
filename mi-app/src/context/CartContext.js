@@ -21,19 +21,14 @@ export const CartProvider = ({ children }) => {
 
   const addToCart = (product) => {
     setCart(prev => {
-      // Caso para productos customizados (asume que tienen un ID único)
       if (product.isCustom) {
-        // Generamos un ID único para el item del carrito para evitar colisiones
         const cartItemId = `custom-${Date.now()}`;
         return [...prev, { ...product, quantity: 1, cartItemId }];
       }
 
-      // Lógica para productos estándar
-      // Buscamos por _id y size (el nuevo formato)
       const existing = prev.find(p => p._id === product._id && p.size === product.size);
       
       if (existing) {
-        // Si ya existe, incrementamos la cantidad
         return prev.map(p => 
           p._id === product._id && p.size === product.size 
             ? { ...p, quantity: p.quantity + 1 } 
@@ -41,20 +36,27 @@ export const CartProvider = ({ children }) => {
         );
       }
       
-      // Si es nuevo, lo agregamos al carrito con un ID único para el carrito
-      const cartItemId = product._id + (product.size || '');
-      return [...prev, { ...product, quantity: 1, cartItemId }];
+      // SOLUCIÓN: Construir un objeto limpio para el carrito
+      const newCartItem = {
+        _id: product._id,
+        name: product.name,
+        price: product.price,
+        image: product.image,
+        size: product.size,
+        quantity: 1,
+        cartItemId: product._id + (product.size || ''),
+      };
+
+      return [...prev, newCartItem];
     });
   };
 
-  // La función ahora usa un `cartItemId` único para eliminar el item correcto
   const removeFromCart = (cartItemId) => {
     setCart(prev => prev.filter(p => p.cartItemId !== cartItemId));
   };
 
   const clearCart = () => setCart([]);
 
-  // Calculamos el total usando la nueva propiedad `price`
   const total = cart.reduce((acc, item) => acc + (item.price || 0) * item.quantity, 0);
 
   return (
