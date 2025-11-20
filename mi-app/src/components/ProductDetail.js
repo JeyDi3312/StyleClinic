@@ -6,7 +6,6 @@ import { useCart } from '../context/CartContext';
 import './ProductDetail.css';
 
 function ProductDetail() {
-  // 1. Obtenemos el `id` del producto de la URL
   const { id } = useParams();
   const [producto, setProducto] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -14,7 +13,6 @@ function ProductDetail() {
   const { addToCart } = useCart();
 
   useEffect(() => {
-    // 2. Apuntamos al nuevo endpoint del backend de Node.js
     axios.get(`http://localhost:5000/api/products/${id}`)
       .then(res => {
         setProducto(res.data);
@@ -37,17 +35,16 @@ function ProductDetail() {
       return;
     }
 
-    // 3. Creamos el objeto a añadir con los nombres de la nueva API
     const productToAdd = {
-        _id: producto._id,       // Usamos _id de MongoDB
-        name: producto.name,       // `name` en lugar de `nombreproducto`
-        price: producto.price,     // `price` en lugar de `priceproducto`
-        image: producto.image,     // `image` en lugar de `imageproducto`
-        size: selectedSize,     // La talla seleccionada
+        _id: producto._id,       
+        name: producto.name,       
+        price: producto.price,     
+        image: producto.image,     
+        size: selectedSize,     
     };
 
     addToCart(productToAdd);
-    alert("Producto añadido al carrito!"); // Feedback para el usuario
+    alert("Producto añadido al carrito!"); 
   };
 
   if (loading) {
@@ -66,14 +63,12 @@ function ProductDetail() {
     );
   }
 
-  // 4. Las tallas ahora vienen de un array `sizes`
   const tallas = producto.sizes || ["S", "M", "L", "XL"];
 
   return (
     <Container className="Productdetail-custom py-5">
       <Row>
         <Col md={6}>
-          {/* 5. Usamos los nuevos nombres de campo para mostrar la info */}
           <Image src={producto.image} fluid />
         </Col>
         <Col md={6}>
@@ -100,7 +95,7 @@ function ProductDetail() {
             variant="dark" 
             onClick={handleAddToCart} 
             className="mt-3"
-            disabled={!selectedSize} // El botón se activa solo si se elige una talla
+            disabled={!selectedSize}
           >
             Agregar al carrito
           </Button>

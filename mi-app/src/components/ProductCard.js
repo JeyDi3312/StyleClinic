@@ -21,7 +21,6 @@ function ProductCard({ id, name, price, image, size }) {
     navigate(`/producto/${id}`);
   };
   
-  // SOLUCIÓN: Cambiar 'id' por '_id' para que coincida con el modelo de datos
   const product = { _id: id, name, price, image, size };
 
   return (

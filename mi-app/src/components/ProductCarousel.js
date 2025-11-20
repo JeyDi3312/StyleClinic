@@ -9,10 +9,8 @@ function ProductCarousel() {
   const { addToCart } = useCart();
 
   useEffect(() => {
-    // 1. Cambiar la URL del endpoint al nuevo servidor
     axios.get('http://localhost:5000/api/products')
       .then(response => {
-        // Tomamos los primeros 4 productos para el carrusel
         setProducts(response.data.slice(0, 4));
       })
       .catch(error => {
@@ -20,7 +18,6 @@ function ProductCarousel() {
       });
   }, []);
 
-  // Agrupamos los productos de 2 en 2 para el carrusel
   const groupSize = 2;
   const productGroups = [];
   for (let i = 0; i < products.length; i += groupSize) {
@@ -36,9 +33,7 @@ function ProductCarousel() {
             <Carousel.Item key={idx}>
               <div className="d-flex justify-content-center gap-4 custom-carousel">
                 {group.map(product => (
-                  // 2. Usar el nuevo _id que genera MongoDB
                   <Card key={product._id} className="product-card">
-                    {/* 3. Usar los nuevos nombres de campo: image, name, price */}
                     <Card.Img variant="top" src={product.image} />
                     <Card.Body>
                       <Card.Title>{product.name}</Card.Title>
@@ -46,9 +41,8 @@ function ProductCarousel() {
                       <Button
                         variant="light"
                         onClick={() =>
-                          // 4. Usar los nuevos nombres de campo al agregar al carrito
                           addToCart({
-                            _id: product._id, // Usamos _id
+                            _id: product._id,
                             name: product.name,
                             price: product.price,
                             image: product.image

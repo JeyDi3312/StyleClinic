@@ -1,9 +1,7 @@
-/* === Tema Claro para Panel de Administrador === */
-
 .admin-container-light {
   padding-top: 180px;
   padding-bottom: 2rem;
-  background-color: #f8f9fa; /* Fondo gris claro */
+  background-color: #f8f9fa; 
   min-height: 100vh;
 }
 
@@ -17,11 +15,11 @@
 
 .admin-header-light h1 {
   font-weight: 700;
-  color: #343a40; /* Texto oscuro */
+  color: #343a40; 
 }
 
 .admin-header-light p {
-  color: #6c757d; /* Texto gris */
+  color: #6c757d; 
 }
 
 .stat-card-light {
